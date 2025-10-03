@@ -1,0 +1,107 @@
+ body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(to top right, #ffdde1, #ee9ca7);
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatUp 6s linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-800px) scale(1.5) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* Title text */
+    .title {
+      position: absolute;
+      top: 40px; /* distance from top */
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      font-size: 3.5em;
+      font-family: 'Cursive', 'Comic Sans MS', sans-serif;
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff4d6d, #ff85a1, #ff2e63, #ff6b81);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 2s infinite alternate, fadeInDown 2s ease;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translate(-50%, -50px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff85a1, 0 0 30px #ff2e63; }
+      to   { text-shadow: 0 0 20px #ff6b81, 0 0 40px #ff4d6d, 0 0 60px #ff2e63; }
+    }
+
+    /* Cute bigger envelope */
+    .envelope {
+      width: 220px;
+      height: 150px;
+      background: white;
+      border: 4px solid #ff4d6d;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .envelope:hover {
+      transform: scale(1.1);
+    }
+    .envelope::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ff4d6d;
+      clip-path: polygon(0 0, 100% 0, 50% 60%);
+    }
+    .heart-stamp {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.8em;
+      color: #ff4d6d;
+      animation: heartbeat 1.2s infinite;
+    }
+    @keyframes heartbeat {
+      0%, 20%, 40%, 60%, 80%, 100% { transform: translateX(-50%) scale(1); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-50%) scale(1.2); }
+    }
