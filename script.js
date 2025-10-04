@@ -9,6 +9,10 @@ for (let i = 0; i < 25; i++) {
 	document.body.appendChild(heart);
 }
 
+
 function openLetter() {
-	window.location.href = "letter.html";
+  // Mark that user interacted
+  sessionStorage.setItem('userClicked', 'true');
+  // Open letter.html
+  window.location.href = 'letter.html';
 }

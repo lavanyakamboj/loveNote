@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at center, #ffdde1, #ee9ca7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+/* Floating hearts */
+body::before {
+  content: "💖 💕 💞 💘 💝";
+  position: absolute;
+  font-size: 2rem;
+  top: 0;
+  left: 50%;
+  animation: floatHearts 10s infinite linear;
+  opacity: 0.5;
+}
+
+@keyframes floatHearts {
+  0% { transform: translateY(100vh) translateX(-50%); }
+  100% { transform: translateY(-10vh) translateX(-50%); }
+}
+
+/* Container layout */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  gap: 40px; /* space between letter and video */
+  margin: 40px 0; /* vertical spacing */
+}
+
+/* Love Letter */
+.letter {
+  flex: 1;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 0, 100, 0.3);
+  animation: fadeIn 2s ease-in-out;
+  min-width: 300px;
+}
+
+.letter h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #ff3b7b;
+  margin-bottom: 20px;
+}
+
+.letter p {
+  color: #444;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Video section */
+.video-container {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+video {
+  width: 70%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 0, 100, 0.3);
+  cursor: pointer;
+  display: block;
+}
+
+/* Center play button */
+#playPauseBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  padding: 10px 15px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 0, 100, 0.5);
+}
+
+/* Hidden class */
+.hidden {
+  display: none;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    height: auto;
+    padding: 20px;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .letter {
+    width: 100%;
+    padding: 20px;
+  }
+
+  video {
+    width: 90%;
+  }
+
+  .letter h1 {
+    font-size: 1.8rem;
+  }
+
+  .letter p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .letter h1 {
+    font-size: 1.5rem;
+  }
+
+  .letter p {
+    font-size: 0.95rem;
+  }
+
+  video {
+    border-radius: 15px;
+  }
+}
