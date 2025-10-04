@@ -29,20 +29,29 @@
       <button id="playPauseBtn" class="hidden">⏸️</button>
     </div>
   </div>
-
 <script>
 const video = document.getElementById("loveVideo");
 const playPauseBtn = document.getElementById("playPauseBtn");
 
-// Check if user interacted on previous page
+// Check if user clicked on index.html
 const userClicked = sessionStorage.getItem('userClicked');
+
+function tryPlayWithSound() {
+    video.muted = false;
+    video.play().then(() => {
+        playPauseBtn.classList.add("hidden");
+    }).catch(() => {
+        // Autoplay with sound blocked, show play button
+        playPauseBtn.classList.remove("hidden");
+    });
+}
+
 if(userClicked === 'true'){
-  video.muted = false; // enable sound
-  video.play();         // play immediately
-  sessionStorage.removeItem('userClicked'); // clear flag
+    tryPlayWithSound();
+    sessionStorage.removeItem('userClicked');
 } else {
-  video.muted = true;  // autoplay muted if no prior click
-  video.play();
+    video.muted = true;
+    video.play().catch(() => {});
 }
 
 // Toggle pause/play on video click
@@ -56,9 +65,20 @@ video.addEventListener("click", () => {
   }
 });
 
-// Show/hide button based on play/pause
+// Play/pause button behavior
+playPauseBtn.addEventListener("click", () => {
+    if(video.paused){
+        video.play();
+        playPauseBtn.classList.add("hidden");
+    } else {
+        video.pause();
+        playPauseBtn.classList.remove("hidden");
+    }
+});
+
 video.addEventListener("play", () => playPauseBtn.classList.add("hidden"));
 video.addEventListener("pause", () => playPauseBtn.classList.remove("hidden"));
 </script>
+
 </body>
 </html>
